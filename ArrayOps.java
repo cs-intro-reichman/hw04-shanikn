@@ -1,11 +1,11 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        int[] array={1,-2,3,-4,5};
+        //int[] array={1,-2,3,-4,5};
         //System.out.println(findMissingInt(array));
-         System.out.println(secondMaxValue(array));
-        //int [] array2={3,-4,1,2,5};
-        //int [] array1={1,3,-4,5};
-        //System.out.println(containsTheSameElements(array1,array2));
+        //System.out.println(secondMaxValue(array));
+        int [] array2={1,2,3,-4,5};
+        int [] array1={1,3,-4,5};
+        System.out.println(containsTheSameElements(array1,array2));
         //int [] array={1,1,1,2,2};
         //System.out.println(isSorted(array));
     }
@@ -68,49 +68,55 @@ public class ArrayOps {
 
     public static boolean containsTheSameElements(int [] array1,int [] array2) {
         // Write your code here:
-        boolean sameElements=true;
-        for(int i=0; i<array1.length; i++)
-        {
-            for(int j=0; j<array2.length; j++)
+        boolean sameElements1=true;
+        boolean sameElements2=true;
+        
+            for(int i=0; i<array1.length; i++)
             {
-                if(array1[i]==array2[j])
+                for(int j=0; j<array2.length; j++)
                 {
-                    sameElements=true;
-                    j=array2.length;
+                    if(array1[i]==array2[j])
+                    {
+                        sameElements1=true;
+                        j=array2.length;
+                    }
+                    else
+                    {
+                        sameElements1=false;
+                    }
                 }
-                else
-                {
-                    sameElements=false;
-                }
-            }
             
-            if(sameElements==false)
-            {
-                break;
+                if(sameElements1==false)
+                {
+                    break;
+                }
             }
-        }
+        
+        
+            for(int i=0; i<array2.length; i++)
+            {
+                for(int j=0; j<array1.length; j++)
+                {
+                    if(array2[i]==array1[j])
+                    {
+                        sameElements2=true;
+                        j=array1.length;
+                    }
+                    else
+                    {
+                        sameElements2=false;
+                    }
+                }
+            
+                if(sameElements2==false)
+                {
+                    break;
+                }
+            }
+        
 
-        for(int i=0; i<array2.length; i++)
-        {
-            for(int j=0; j<array1.length; j++)
-            {
-                if(array2[i]==array1[j])
-                {
-                    sameElements=true;
-                    j=array1.length;
-                }
-                else
-                {
-                    sameElements=false;
-                }
-            }
-            
-            if(sameElements==false)
-            {
-                break;
-            }
-        }
-        return sameElements;
+        
+        return sameElements1&&sameElements2;
     }
 
     public static boolean isSorted(int [] array) {
