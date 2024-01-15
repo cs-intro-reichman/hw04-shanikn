@@ -36,16 +36,23 @@ public class ArrayOps {
     public static int secondMaxValue(int [] array) {
         // Write your code here:
         int max=array[0];
+        int tempI=0;
         for(int i=1;i<array.length;i++)
         {
             if(array[i]>max)
             {
                 max=array[i];
+                tempI=i;
             }
         }
         int max1=array[0];
         for(int j=0;j<array.length;j++)
         {
+            if(array[j]==max && j!=tempI)
+            {
+                max1=array[j];
+                j=array.length;
+            }
             if(array[j]>max1 && array[j]!=max)
             {
                 max1=array[j];
