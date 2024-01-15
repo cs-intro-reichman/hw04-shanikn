@@ -1,13 +1,13 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        //int[] array={0,1,3,4,5};
+        int[] array={2,3,8,7,8};
         //System.out.println(findMissingInt(array));
-        // System.out.println(secondMaxValue(array));
+         System.out.println(secondMaxValue(array));
         //int [] array2={3,-4,1,2,5};
         //int [] array1={1,3,-4,5};
         //System.out.println(containsTheSameElements(array1,array2));
-        int [] array={1,1,1,2,2};
-        System.out.println(isSorted(array));
+        //int [] array={1,1,1,2,2};
+        //System.out.println(isSorted(array));
     }
     
     //returns the missing integer in the array, between 0 and the array length
@@ -48,14 +48,18 @@ public class ArrayOps {
         int max1=array[0];
         for(int j=0;j<array.length;j++)
         {
-            if(array[j]==max && j!=tempI)
+            
+            if(array[j]>max1 ) //&& array[j]!=max
             {
                 max1=array[j];
-                j=array.length;
             }
-            if(array[j]>max1 && array[j]!=max)
+            else
             {
-                max1=array[j];
+                if(array[j]==max && j!=tempI)
+                {
+                    max1=array[j];
+                    j=array.length; //break;
+                }
             }
         }
         return max1;
