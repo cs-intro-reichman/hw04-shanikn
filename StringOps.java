@@ -23,24 +23,29 @@ public class StringOps {
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
     //String s="Hello World";
-    //System.out.println(capVowelsLowRest (s));        
+    //String s="One two tHRee world";
+    //System.out.println(capVowelsLowRest(s));        
     //System.out.println(camelCase (s));
+    //String string="Hello world";
+    //char chr='l';
+    //System.out.println(allIndexOf (string, chr));
+
     }
 
-    public static String capVowelsLowRest (String string) {
+    public static String capVowelsLowRest (String string) { //why doesnt it work when the first char is an uppercase vowel?
         // Write your code here:
         String answer="";
         for(int i=0;i<string.length(); i++)
         {
-            if(string.charAt(i)=='a' || string.charAt(i)=='e' || string.charAt(i)=='i' || string.charAt(i)=='o' || string.charAt(i)=='u')
+            if((string.charAt(i)=='a') || (string.charAt(i)=='e') || (string.charAt(i)=='i') || (string.charAt(i)=='o') || (string.charAt(i)=='u'))
             {
-                if(string.charAt(i)>(char)90) //not uppercase
+                if((string.charAt(i)>=(char)65) && (string.charAt(i)<=(char)90)) //not uppercase
                 {
-                    answer+=(char)(string.charAt(i)-32);
+                    answer+=string.charAt(i);
                 }
                 else
                 {
-                    answer+=string.charAt(i);
+                    answer+=(char)(string.charAt(i)-32);
                 }
             }
             else
@@ -59,14 +64,15 @@ public class StringOps {
         return answer;
     }
 
-    public static String camelCase (String string) {
+    public static String camelCase (String string) { //do help functions
         // Write your code here:
         String answer="";
         int i=0;
         
             while(string.charAt(i)!=(char)32 && i<string.length())
             {
-                if(string.charAt(i)<=65 && string.charAt(i)>=90)
+                
+                if(string.charAt(i)<=(char)65 && string.charAt(i)>=(char)90)
                 {
                     answer+=(char)(string.charAt(i)+32);
                 }
@@ -74,11 +80,13 @@ public class StringOps {
                 {
                     answer+=string.charAt(i);
                 }
-                i++;
+                i++; 
             }
-
+            
+            i--;
             while(i<string.length())
             {
+                i++;
                 while(string.charAt(i)==(char)32 && i<string.length())
                 {
                     i++;
@@ -95,7 +103,7 @@ public class StringOps {
                         answer+=string.charAt(i);
                     }
                 }
-                i++;
+                
 
                 while(string.charAt(i)!=32 && i<string.length())
                 {
@@ -116,6 +124,25 @@ public class StringOps {
 
     public static int[] allIndexOf (String string, char chr) {
         // Write your code here:
-        return new int[1];
+         //setting an empty array of the length of the string
+        int size=0;
+        for(int j=0;j<string.length();j++)
+        {
+            if(string.charAt(j)==chr)
+            {
+                size++;
+            }
+        }
+        int array[]=new int[size];
+        int n=0;
+        for(int i=0; i<string.length(); i++)
+        {
+            if(string.charAt(i)==chr)
+            {
+                array[n]=i;
+                n++;
+            }
+        }
+        return array;
     }
 }
