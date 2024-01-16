@@ -22,10 +22,10 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-    //String s="Hello World";
+    String s="Hello World";
     //String s="One two tHRee world";
     //System.out.println(capVowelsLowRest(s));        
-    //System.out.println(camelCase (s));
+    System.out.println(camelCase (s));
     //String string="Hello world";
     //char chr='l';
     //System.out.println(allIndexOf (string, chr));
@@ -64,61 +64,67 @@ public class StringOps {
         return answer;
     }
 
-    public static String camelCase (String string) { //do help functions
+    public static boolean Cap(char c) //returns true if a char is uppercase
+    {
+        return c>='A' && c<='Z';
+    }
+
+    public static char upCase(char s) // returns an uppercase version of char 
+    {
+        if(s>='a' && s<='z')
+        {
+            return (char)(s-'a' + 'A');
+        }
+        else
+        {
+            return s;
+        }
+    }
+
+    public static char lowerCase(char s) // returns a lowercase version of char
+    {
+        if(s>='A' && s<='Z')
+        {
+            return (char)(s-'A'+'a');
+        }
+        else
+        {
+            return s;
+        }
+    }
+
+    public static String camelCase (String string) { 
         // Write your code here:
         String answer="";
-        int i=0;
-        
-            while(string.charAt(i)!=(char)32 && i<string.length())
+        boolean cap=false;
+        boolean first=false;
+
+        for(int i=0; i<string.length(); i++)
+        {
+            if(!first && string.charAt(i)!=' ')
             {
-                
-                if(string.charAt(i)<=(char)65 && string.charAt(i)>=(char)90)
-                {
-                    answer+=(char)(string.charAt(i)+32);
-                }
-                else
-                {
-                    answer+=string.charAt(i);
-                }
-                i++; 
+                answer+=(lowerCase(string.charAt(i)));
+                first=true;
+                cap=false;
+                continue;
             }
-            
-            i--;
-            while(i<string.length())
+
+            if(cap && string.charAt(i)!=' ')
             {
-                i++;
-                while(string.charAt(i)==(char)32 && i<string.length())
+                answer+= upCase(string.charAt(i));
+                cap=false;
+            }
+            else
+            {
+                if(string.charAt(i)!= ' ' && !cap) 
                 {
-                    i++;
-                }
-
-                if(string.charAt(i)>(char)90 && i<string.length())
-                    {
-                        answer+=(char)(string.charAt(i)-32);
-                    }
-                else
-                {
-                    if(i<string.length())
-                    {
-                        answer+=string.charAt(i);
-                    }
-                }
-                
-
-                while(string.charAt(i)!=32 && i<string.length())
-                {
-                    if(string.charAt(i)>=(char)65 && string.charAt(i)<=(char)90)
-                    {
-                        answer+=(char)(string.charAt(i)+32);
-                    }
-                    else
-                    {
-                        answer+=string.charAt(i);
-                    }
-                    i++;
+                    answer+= lowerCase(string.charAt(i));
                 }
             }
-            
+            if(string.charAt(i)==' ')
+            cap=true;
+        }
+
         return answer;
     }
 
